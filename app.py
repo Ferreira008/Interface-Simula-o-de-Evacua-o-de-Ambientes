@@ -8,7 +8,11 @@ st.markdown(
     """
     <style>
     /* Base layout */
-    html, body, [data-testid="stAppViewContainer"] { font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif; }
+    html, body, [data-testid="stAppViewContainer"] {
+        font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
+        background: #ffffff !important;
+        color: #111111 !important;
+    }
 
     /* Remove default Streamlit padding at the top */
     .block-container { padding-top: 1.2rem; padding-bottom: 2rem; }
@@ -22,13 +26,13 @@ st.markdown(
         margin-bottom: 32px;
         user-select: none;
     }
-    .top-nav .active { font-weight: 800; color: #111; }
+    .top-nav .active { font-weight: 800; color: #111111; }
     .top-nav .inactive { color: #9b9b9b; font-weight: 700; }
 
     /* Big title style */
-    .hero-title { font-size: clamp(36px, 5vw, 64px); line-height: 1.1; font-weight: 800; color: #111; margin: 18px 0 12px 0; }
+    .hero-title { font-size: clamp(36px, 5vw, 64px); line-height: 1.1; font-weight: 800; color: #111111; margin: 18px 0 12px 0; }
 
-    .lead { font-size: clamp(16px, 1.4vw, 22px); color: #111; }
+    .lead { font-size: clamp(16px, 1.4vw, 22px); color: #111111; }
 
     /* Footer logos bottom-right */
     .brand-footer {
@@ -41,6 +45,10 @@ st.markdown(
     /* Hide Streamlit default header/footer */
     header[data-testid="stHeader"] { display: none; }
     footer { visibility: hidden; }
+
+    /* Ensure main and sidebar backgrounds remain white regardless of theme */
+    [data-testid="stAppViewContainer"] > .main { background: #ffffff !important; }
+    [data-testid="stSidebar"] { background: #ffffff !important; }
     </style>
     """,
     unsafe_allow_html=True,
