@@ -89,7 +89,7 @@ with col_left:
 with col_right:
     runner_path = Path("assets/runner_exit.svg")
     if runner_path.exists():
-        st.image(str(runner_path), use_column_width=True)
+        st.image(str(runner_path), use_container_width=True)
 
 # ---- Bottom-right logos ----
 assets = Path("assets")
