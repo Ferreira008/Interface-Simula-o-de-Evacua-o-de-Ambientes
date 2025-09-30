@@ -1,4 +1,5 @@
 import streamlit as st
+from streamlit_option_menu import option_menu
 
 
 def inject_base_styles() -> None:
@@ -92,20 +93,15 @@ def inject_base_styles() -> None:
     )
 
 
-def render_navbar() -> None:
-
-    st.markdown(
-        """
-        <div class="app-nav">
-            <span class="nav-item active">Menu</span>
-            <span class="nav-item">Mapas</span>
-            <span class="nav-item">Parâmetros</span>
-            <span class="nav-item">Resultados</span>
-            <span class="nav-item">Documentação</span>
-        </div>
-        """,
-        unsafe_allow_html=True,
+def render_navbar() -> str:
+    selected = option_menu(
+        menu_title=None,
+        options=["Menu", "Mapas", "Parâmetros", "Resultados", "Documentação"],
+        icons=["house", "map", "sliders", "bar-chart", "book"],
+        default_index=0,
+        orientation="horizontal",
     )
+    return selected
 
 
 def render_hero_section() -> None:
@@ -159,8 +155,29 @@ def main() -> None:
     )
 
     inject_base_styles()
-    render_navbar()
-    render_hero_section()
+
+    # Estado compartilhado
+    if "pagina" not in st.session_state:
+        st.session_state.pagina = "Menu"
+
+    selected = render_navbar()
+    st.session_state.pagina = selected
+
+    if selected == "Menu":
+        render_hero_section()
+    elif selected == "Mapas":
+        import mapas
+        mapas.mostrar()
+    elif selected == "Parâmetros":
+        st.title("⚙️ Parâmetros")
+        st.write("Aqui você pode ajustar parâmetros.")
+    elif selected == "Resultados":
+        st.title("📊 Resultados")
+        st.write("Aqui serão exibidos os resultados.")
+    elif selected == "Documentação":
+        st.title("📖 Documentação")
+        st.write("Aqui entra a documentação do projeto.")
+
     render_brand_footer()
 
 

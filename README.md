@@ -16,4 +16,4 @@ streamlit run app.py
 
 Notas
 - As imagens são carregadas de URLs públicas e se ajustam ao espaço disponível.
-- O menu superior é estilizado para refletir o mock: `Menu` ativo em preto, demais itens em cinza.
+- O menu superior usa `streamlit-option-menu` e segue o mock: `Menu` ativo, demais em cinza.
